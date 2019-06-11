@@ -1,11 +1,10 @@
 {
-    "name": "TervisUtilityJS",
-    "type": "module",
-    "main": "TervisUtilityJS.js",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/Tervis-Tumbler/TervisUtilityJS"
-    },
-    "license": "MIT"
-  }
-  
+  "name": "TervisUtilityJS",
+  "type": "module",
+  "main": "TervisUtilityJS.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tervis-Tumbler/TervisUtilityJS"
+  },
+  "license": "MIT"
+}
