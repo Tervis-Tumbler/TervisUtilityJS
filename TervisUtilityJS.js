@@ -33,3 +33,13 @@ export function New_HashTableIndex ({
     }
     return $HashTable
 }
+
+export function ConvertFrom_StringUsingRegexCaptureGroup ({
+    $Regex,
+    $String
+}) {
+    var $Results = $Regex.exec($String)
+    if ($Results) {
+        return $Results.groups
+    }
+}
