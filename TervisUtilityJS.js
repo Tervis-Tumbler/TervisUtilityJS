@@ -43,3 +43,28 @@ export function ConvertFrom_StringUsingRegexCaptureGroup ({
         return $Results.groups
     }
 }
+
+export function sdf ({
+    $Array,
+    $NumberOfPositionsToRotate
+}) {
+    var n = $NumberOfPositionsToRotate - 1
+    while ($Array.length && n < 0) n += $Array.length;
+    $Array.push.apply($Array, $Array.splice(0, n));
+    return $Array;
+}
+
+//https://stackoverflow.com/a/1985308/101679
+export function Invoke_ArrayRotate ({
+    $Array,
+    $NumberOfPositionsToRotate
+}) {
+    return $Array
+    .slice($NumberOfPositionsToRotate, $Array.length)
+    .concat(
+        $Array.slice(
+            0,
+            $NumberOfPositionsToRotate
+        )
+    )
+}
