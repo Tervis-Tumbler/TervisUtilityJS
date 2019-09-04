@@ -1,10 +1,3 @@
-import uuidv4 from 'uuid/v4.js'
-// Moved to dynamic imports in functions due to failures to import when used with unpkg.com
-// import got from 'got'
-// import fs from 'fs-extra'
-
-const $IsBrowser = !(typeof window === 'undefined');
-
 export function Add_MemberScriptProperty ({
     $InputObject,
     $Name,
@@ -66,19 +59,6 @@ export function Invoke_ArrayRotate ({
     )
 }
 
-export async function Invoke_ProcessTemplateFile ({
-    $TemplateFilePath,
-    $TemplateVariables
-}) {
-    if (!$IsBrowser) {
-        var fs = (await import("fs-extra")).default
-    }
-    
-    let $TemplateContent = await fs.readFile($TemplateFilePath, "utf-8")
-    var $Result = Invoke_ProcessTemplate({ $TemplateContent, $TemplateVariables })
-    return $Result
-}
-
 export function Invoke_ProcessTemplate ({
     $TemplateContent,
     $TemplateVariables
@@ -122,67 +102,10 @@ export function New_NumberRange ({$Size, $StartAt = 0}) {
     return [...Array($Size).keys()].map(i => i +$StartAt);
 }
 
-export function New_TemporaryDirectory({
-    $TemporaryFolderType
-}) {
-    let $GUID = uuidv4()
-    let $TemporaryFolderRoot = (() => {
-        if ($TemporaryFolderType === "System") {
-            return `C:\\windows\\temp`
-        }
-    })()
-
-	return `${$TemporaryFolderRoot}\\${$GUID}`
-}
-
 export function ConvertTo_RemotePath({
     $Path,
     $ComputerName
 }) {
     //https://stackoverflow.com/questions/10610402/javascript-replace-all-commas-in-a-string
     return `\\\\${$ComputerName}\\${$Path.split(":").join("$")}`
-}
-
-export async function Invoke_FileDownload({
-    $URI,
-    $OutFile
-}) {
-    if (!$IsBrowser) {
-        var got = (await import("got")).default
-        var fs = (await import("fs-extra")).default
-    }
-    
-    return new Promise((resolve, reject) => {
-        const options = {
-            url: $URI,
-            timeout: 120000,
-            stream: true,
-        }
-        const stream = got(options).pause();
-        let fileStream;
-
-        stream.on("error", error => {
-            if (fileStream) {
-                fileStream.destroy();
-            }
-            reject(error);
-        });
-        stream.on("data", data => {
-            fileStream.write(data);
-        });
-        stream.on("end", () => {
-            fileStream.end();
-        });
-        stream.on("response", function () {
-            fileStream = fs.createWriteStream($OutFile);
-            fileStream.on("error", error => {
-                stream.destroy();
-                reject(error);
-            })
-            fileStream.on("close", () => {
-                resolve($OutFile);
-            });
-            this.resume();
-        });
-    });
 }

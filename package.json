@@ -7,10 +7,5 @@
     "type": "git",
     "url": "https://github.com/Tervis-Tumbler/TervisUtilityJS"
   },
-  "license": "MIT",
-  "dependencies": {
-    "fs-extra": "^7.0.1",
-    "got": "^9.6.0",
-    "uuid": "^3.3.2"
-  }
+  "license": "MIT"
 }
