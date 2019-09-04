@@ -143,7 +143,7 @@ export function ConvertTo_RemotePath({
     return `\\\\${$ComputerName}\\${$Path.split(":").join("$")}`
 }
 
-export function Invoke_FileDownload({
+export async function Invoke_FileDownload({
     $URI,
     $OutFile
 }) {
