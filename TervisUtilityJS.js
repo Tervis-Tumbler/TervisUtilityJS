@@ -1,6 +1,13 @@
 import uuidv4 from 'uuid/v4.js'
-import got from 'got'
-import fs from 'fs-extra'
+
+const $IsBrowser = !(typeof window === 'undefined');
+
+if (!$IsBrowser) {
+    var got = (await import("got")).default
+    var fs = (await import("fs-extra")).default
+    // import got from 'got'
+    // import fs from 'fs-extra'
+}
 
 export function Add_MemberScriptProperty ({
     $InputObject,
