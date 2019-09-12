@@ -75,7 +75,7 @@ ${$TemplateContent}
 export function Remove_ObjectKeyWithEmptyOrNullValue (obj) {
     Object.entries(obj).forEach(([key, val]) => {
         if (val && typeof val === 'object') { 
-            removeEmpty(val) 
+            Remove_ObjectKeyWithEmptyOrNullValue(val) 
         }
         else if (val == null) {
             delete obj[key]
