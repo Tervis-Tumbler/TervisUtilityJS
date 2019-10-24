@@ -99,7 +99,30 @@ export function Get_GUIDFromString ({
 
 //https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
 export function New_NumberRange ({$Size, $StartAt = 0}) {
-    return [...Array($Size).keys()].map(i => i +$StartAt);
+    return [...Array($Size).keys()].map(i => i + $StartAt);
+}
+
+//https://stackoverflow.com/a/44957114/101679
+export function New_Range ({ 
+    $Start,
+    $Stop,
+    $Step = 1
+}) {
+    $Start = Number($Start)
+    $Stop = Number($Stop)
+    $Step = Number($Step)
+    
+    return Array(
+        Math
+        .ceil(
+            (($Stop + 1) - $Start) / $Step
+        )
+    )
+    .fill($Start)
+    .map(
+        ($CurrentValue, $IndexOfCurrentValueInArray) => 
+        $CurrentValue + $IndexOfCurrentValueInArray * $Step
+    )  
 }
 
 export function ConvertTo_RemotePath({
