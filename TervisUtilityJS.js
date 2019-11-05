@@ -63,6 +63,16 @@ export function Invoke_ProcessTemplate ({
     $TemplateContent,
     $TemplateVariables
 }) {
+    if ($TemplateVariables) {
+        $TemplateVariables = Object.fromEntries(
+            Object
+            .entries($TemplateVariables)
+            .map( 
+                ([$Name, $Value]) =>
+                ([$Name, JSON.stringify($Value)])
+            )
+        )
+    }
     let $TemplateContentAsTemplateLiteral = `
 \`
 ${$TemplateContent}
