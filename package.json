@@ -1,6 +1,6 @@
 {
   "name": "@tervis/tervisutilityjs",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "type": "module",
   "main": "TervisUtilityJS.js",
   "repository": {
