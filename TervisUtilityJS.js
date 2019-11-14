@@ -5,14 +5,26 @@ export function Add_MemberScriptProperty ({
 }) {
     if (Array.isArray($InputObject)) {
         for (var $InputObjectInstance of $InputObject) {
-            Object.defineProperty($InputObjectInstance, $Name, {
-                get: $Value
-            })
+            Object.defineProperty(
+                $InputObjectInstance,
+                $Name,
+                {
+                    get: $Value,
+                    enumerable: true,
+                    configurable: true
+                }
+            )
         }
     } else {
-        Object.defineProperty($InputObject, $Name, {
-            get: $Value
-        })
+        Object.defineProperty(
+            $InputObject,
+            $Name,
+            {
+                get: $Value,
+                enumerable: true,
+                configurable: true
+            }
+        )
     }
 } 
 
